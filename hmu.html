@@ -72,18 +72,30 @@
     <!-- Morse Code Converter -->
     <h2>Morse Code Converter</h2>
     <form>
-        <input type="text" id="morseInput" placeholder="Text to convert">
-        <button type="button" onclick="convertToMorse()">Convert</button>
+        <input type="text" id="morseInput" placeholder="Text to Morse">
+        <button type="button" onclick="convertToMorse()">Convert to Morse</button>
     </form>
     <p id="morseResult"></p>
+
+    <form>
+        <input type="text" id="morseToTextInput" placeholder="Morse to Text">
+        <button type="button" onclick="convertMorseToText()">Convert to Text</button>
+    </form>
+    <p id="morseToTextResult"></p>
 
     <!-- Binary Code Converter -->
     <h2>Binary Code Converter</h2>
     <form>
-        <input type="text" id="binaryInput" placeholder="Text to convert">
-        <button type="button" onclick="convertToBinary()">Convert</button>
+        <input type="text" id="binaryInput" placeholder="Text to Binary">
+        <button type="button" onclick="convertToBinary()">Convert to Binary</button>
     </form>
     <p id="binaryResult"></p>
+
+    <form>
+        <input type="text" id="binaryToTextInput" placeholder="Binary to Text">
+        <button type="button" onclick="convertBinaryToText()">Convert to Text</button>
+    </form>
+    <p id="binaryToTextResult"></p>
 
     <!-- Random Number Generator -->
     <h2>Random Number Generator</h2>
@@ -140,6 +152,22 @@
             document.getElementById('morseResult').innerText = 'Morse Code: ' + result;
         }
 
+        function convertMorseToText() {
+            var morseCode = {
+                '.-': 'A', '-...': 'B', '-.-.': 'C', '-..': 'D', '.': 'E', '..-.': 'F', '--.': 'G', '....': 'H',
+                '..': 'I', '.---': 'J', '-.-': 'K', '.-..': 'L', '--': 'M', '-.': 'N', '---': 'O', '.--.': 'P',
+                '--.-': 'Q', '.-.': 'R', '...': 'S', '-': 'T', '..-': 'U', '...-': 'V', '.--': 'W', '-..-': 'X',
+                '-.--': 'Y', '--..': 'Z', '.----': '1', '..---': '2', '...--': '3', '....-': '4', '.....': '5',
+                '-....': '6', '--...': '7', '---..': '8', '----.': '9', '-----': '0', '/': ' '
+            };
+            var input = document.getElementById('morseToTextInput').value.trim().split(' ');
+            var result = input.map(function(code) {
+                return morseCode[code] || code;
+            }).join('');
+
+            document.getElementById('morseToTextResult').innerText = 'Text: ' + result;
+        }
+
         function convertToBinary() {
             var input = document.getElementById('binaryInput').value;
             var result = input.split('').map(function(char) {
@@ -147,6 +175,15 @@
             }).join(' ');
 
             document.getElementById('binaryResult').innerText = 'Binary Code: ' + result;
+        }
+
+        function convertBinaryToText() {
+            var input = document.getElementById('binaryToTextInput').value.trim().split(' ');
+            var result = input.map(function(bin) {
+                return String.fromCharCode(parseInt(bin, 2));
+            }).join('');
+
+            document.getElementById('binaryToTextResult').innerText = 'Text: ' + result;
         }
 
         function generateRandomNumber() {
