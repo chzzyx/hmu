@@ -94,6 +94,16 @@
     </form>
     <p id="randomResult"></p>
 
+    <!-- Currency Converter -->
+    <h2>Currency Converter</h2>
+    <form>
+        <input type="number" id="amount" placeholder="Amount">
+        <input type="text" id="fromCurrency" placeholder="From Currency (e.g., USD)">
+        <input type="text" id="toCurrency" placeholder="To Currency (e.g., EUR)">
+        <button type="button" onclick="convertCurrency()">Convert</button>
+    </form>
+    <p id="currencyResult"></p>
+
     <script>
         function calculate() {
             var num1 = parseFloat(document.getElementById('num1').value);
@@ -145,6 +155,26 @@
             var result = Math.floor(Math.random() * (max - min + 1)) + min;
 
             document.getElementById('randomResult').innerText = 'Random Number: ' + result;
+        }
+
+        function convertCurrency() {
+            var amount = parseFloat(document.getElementById('amount').value);
+            var fromCurrency = document.getElementById('fromCurrency').value.toUpperCase();
+            var toCurrency = document.getElementById('toCurrency').value.toUpperCase();
+            var apiKey = 'cur_live_AtIpf4Ci2X9vr6tkFVaCBTduho8vrwl8bvQ7gOei';
+            var url = `https://api.currencyapi.com/v3/latest?apikey=${apiKey}&base_currency=${fromCurrency}`;
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    var rate = data.data[toCurrency].value;
+                    var result = amount * rate;
+                    document.getElementById('currencyResult').innerText = `Converted Amount: ${result.toFixed(2)} ${toCurrency}`;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    document.getElementById('currencyResult').innerText = 'Error converting currency.';
+                });
         }
     </script>
 </body>
