@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HMU (Huge Math Utility)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+        h1, h2 {
+            color: #333;
+            text-align: center;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: 20px auto;
+        }
+        input, select, button {
+            display: block;
+            width: calc(100% - 22px);
+            margin-bottom: 10px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        button {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        p {
+            font-size: 18px;
+            color: #333;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>HMU (Huge Math Utility)</h1>
+
+    <!-- Calculator -->
+    <h2>Calculator</h2>
+    <form>
+        <input type="number" id="num1" placeholder="Number 1">
+        <input type="number" id="num2" placeholder="Number 2">
+        <select id="operation">
+            <option value="add">+</option>
+            <option value="subtract">-</option>
+            <option value="multiply">*</option>
+            <option value="divide">/</option>
+        </select>
+        <button type="button" onclick="calculate()">Calculate</button>
+    </form>
+    <p id="calcResult"></p>
+
+    <!-- Morse Code Converter -->
+    <h2>Morse Code Converter</h2>
+    <form>
+        <input type="text" id="morseInput" placeholder="Text to convert">
+        <button type="button" onclick="convertToMorse()">Convert</button>
+    </form>
+    <p id="morseResult"></p>
+
+    <!-- Binary Code Converter -->
+    <h2>Binary Code Converter</h2>
+    <form>
+        <input type="text" id="binaryInput" placeholder="Text to convert">
+        <button type="button" onclick="convertToBinary()">Convert</button>
+    </form>
+    <p id="binaryResult"></p>
+
+    <!-- Random Number Generator -->
+    <h2>Random Number Generator</h2>
+    <form>
+        <input type="number" id="min" placeholder="Min">
+        <input type="number" id="max" placeholder="Max">
+        <button type="button" onclick="generateRandomNumber()">Generate</button>
+    </form>
+    <p id="randomResult"></p>
+
+    <script>
+        function calculate() {
+            var num1 = parseFloat(document.getElementById('num1').value);
+            var num2 = parseFloat(document.getElementById('num2').value);
+            var operation = document.getElementById('operation').value;
+            var result;
+
+            if (operation === 'add') {
+                result = num1 + num2;
+            } else if (operation === 'subtract') {
+                result = num1 - num2;
+            } else if (operation === 'multiply') {
+                result = num1 * num2;
+            } else if (operation === 'divide') {
+                result = num1 / num2;
+            }
+
+            document.getElementById('calcResult').innerText = 'Result: ' + result;
+        }
+
+        function convertToMorse() {
+            var morseCode = {
+                'A': '.-', 'B': '-...', 'C': '-.-.', 'D': '-..', 'E': '.', 'F': '..-.', 'G': '--.', 'H': '....',
+                'I': '..', 'J': '.---', 'K': '-.-', 'L': '.-..', 'M': '--', 'N': '-.', 'O': '---', 'P': '.--.',
+                'Q': '--.-', 'R': '.-.', 'S': '...', 'T': '-', 'U': '..-', 'V': '...-', 'W': '.--', 'X': '-..-',
+                'Y': '-.--', 'Z': '--..', '1': '.----', '2': '..---', '3': '...--', '4': '....-', '5': '.....',
+                '6': '-....', '7': '--...', '8': '---..', '9': '----.', '0': '-----', ' ': '/'
+            };
+            var input = document.getElementById('morseInput').value.toUpperCase();
+            var result = input.split('').map(function(char) {
+                return morseCode[char] || char;
+            }).join(' ');
+
+            document.getElementById('morseResult').innerText = 'Morse Code: ' + result;
+        }
+
+        function convertToBinary() {
+            var input = document.getElementById('binaryInput').value;
+            var result = input.split('').map(function(char) {
+                return char.charCodeAt(0).toString(2);
+            }).join(' ');
+
+            document.getElementById('binaryResult').innerText = 'Binary Code: ' + result;
+        }
+
+        function generateRandomNumber() {
+            var min = parseInt(document.getElementById('min').value);
+            var max = parseInt(document.getElementById('max').value);
+            var result = Math.floor(Math.random() * (max - min + 1)) + min;
+
+            document.getElementById('randomResult').innerText = 'Random Number: ' + result;
+        }
+    </script>
+</body>
+</html>
