@@ -25,8 +25,7 @@ Key Features:
    - Open Source
     HMU is open-source, meaning anyone can contribute or improve it! You can find the project on GitHub and join in.
 
-
-- Project Update: HMU is Officially Discontinued.
+Project Update: HMU is Officially Discontinued.
  The HMU project has officially reached its end. The last major update focused on essential bug fixes to ensure stability for existing users.
 
  While I won’t be continuing active development myself, the project will remain open for community contributions. Future updates, if any, will be driven entirely by the community.
