@@ -28,8 +28,6 @@ Key Features:
 Project Update: HMU is Officially Discontinued.
  The HMU project has officially reached its end. The last major update focused on essential bug fixes to ensure stability for existing users.
 
- While I won’t be continuing active development myself, the project will remain open for community contributions. Future updates, if any, will be driven entirely by the community.
-
  Moving forward, I’ll be focusing my energy on new projects, with a strong emphasis on CSS and front-end experimentation.
 
  Thanks to everyone who supported HMU along the way!
